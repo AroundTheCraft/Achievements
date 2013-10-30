@@ -53,7 +53,7 @@ public class Achievements extends JavaPlugin implements Listener {
        
         try {
              conn = DriverManager.getConnection(url, user, passwd);
-             System.out.println("Connexion établie!");
+             System.out.println("Connexion ï¿½tablie!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,38 +76,39 @@ public class Achievements extends JavaPlugin implements Listener {
 	         
              try{
                  Statement state1 = conn.createStatement();
+                 Statement state2 = conn.createStatement();
                  ResultSet result = state1.executeQuery("SELECT * FROM achievements_finish WHERE joueur ='"+ pname +"'");
                  
-                
-                
-                 if(result.next())
+                if(result.next()==false)
+                {
+                sender.sendMessage("Tu n'a pas encore dï¿½bloquï¿½ d'achievements.");
+                 state1.close();
+                }
+                else
+                {
+                	
+                result.beforeFirst();
+                 while(result.next())
                  {
                 	 try
                 	 {
-                		 Statement state2 = conn.createStatement();
+                		 
                          ResultSet result2 = state2.executeQuery("SELECT * FROM achievements_list WHERE id ='"+ result.getString("achievement_id") +"'");
-                         result2.next();
-                         sender.sendMessage("Tu as débloqué les achievements :\n " );
+       
+                         sender.sendMessage("Tu as dï¿½bloquï¿½ les achievements :\n " );
                     	 while(result.next()){
                         sender.sendMessage(ChatColor.GREEN +  result2.getString("achievement") + ": " + result2.getString("description"));
                     	 }
-                    	 result.close();
+                    	
                     	 result2.close();
                      }catch(SQLException e3){
-                         e3.printStackTrace();
-                     
-               
-            }
-                        state1.close();
+                         e3.printStackTrace();       }
+                       
                 	 
 
                 	
                  }
-                 else
-                 {
-                 sender.sendMessage("Tu n'a pas encore débloqué d'achievements.");
-                 state1.close();
-                 }
+                }
          
                  
                  }catch(SQLException e2){
