@@ -87,7 +87,7 @@ public class Achievements extends JavaPlugin implements Listener {
                 		 Statement state2 = conn.createStatement();
                          ResultSet result2 = state2.executeQuery("SELECT * FROM achievements_list WHERE id ='"+ result.getString("achievement_id") +"'");
                          result2.next();
-                         sender.sendMessage("Tu as débloquer les achievements :\n " );
+                         sender.sendMessage("Tu as débloqué les achievements :\n " );
                     	 while(result.next()){
                         sender.sendMessage(ChatColor.GREEN +  result2.getString("achievement") + ": " + result2.getString("description"));
                     	 }
@@ -105,7 +105,7 @@ public class Achievements extends JavaPlugin implements Listener {
                  }
                  else
                  {
-                 sender.sendMessage("Tu n'a pas encore débloquer d'achievements.");
+                 sender.sendMessage("Tu n'a pas encore débloqué d'achievements.");
                  state1.close();
                  }
          
