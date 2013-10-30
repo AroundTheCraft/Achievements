@@ -20,7 +20,7 @@ public class Achievements extends JavaPlugin implements Listener {
 	   
     private String url = "jdbc:mysql://localhost:3306/site";
     private String user = "root";
-    private String passwd = "mai1996";
+    private String passwd = "MOTDEPASSE";
     private String pname;
     private String bname;
     private int x;
